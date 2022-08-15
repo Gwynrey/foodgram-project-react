@@ -1,15 +1,13 @@
-import re
-
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 import django.contrib.auth.password_validation as validators
 from django.shortcuts import get_object_or_404
-from rest_framework import serializers, status
-from rest_framework.relations import SlugRelatedField
+from rest_framework import serializers
 from drf_extra_fields.fields import Base64ImageField
 
 from users.models import CustomUser
-from recipes.models import (Tag, Ingredient, Recipe, RecipeIngredient, Subscribe)
+from recipes.models import (Tag, Ingredient, Recipe,
+                            RecipeIngredient, Subscribe)
 
 
 ERROR_MSG = 'Не удается войти в систему с предоставленными учетными данными.'

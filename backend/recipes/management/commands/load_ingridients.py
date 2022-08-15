@@ -15,15 +15,17 @@ class Command(BaseCommand):
             with open(
                 f'{ data_path }/data/ingredients.csv',
                 newline='',
-                encoding = 'utf-8'
+                encoding='utf-8'
             ) as file:
                 spamreader = csv.reader(file, delimiter=',')
                 for row in spamreader:
-                        Ingredient.objects.update_or_create(
-                            name=row[0],
-                            units=row[1]
-                        )
-                self.stdout.write(self.style.SUCCESS('Все ингредиенты загружены.'))
+                    Ingredient.objects.update_or_create(
+                        name=row[0],
+                        units=row[1]
+                    )
+                self.stdout.write(
+                    self.style.SUCCESS('Все ингредиенты загружены.')
+                )
         except FileNotFoundError:
             raise CommandError("Не удалось открыть файл ingredients.csv.")
         except Exception:

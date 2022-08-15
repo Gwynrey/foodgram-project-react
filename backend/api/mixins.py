@@ -9,6 +9,7 @@ from rest_framework.permissions import AllowAny
 
 class GetObjectMixin:
     """Миксин для удаления/добавления рецептов избранных/корзины."""
+
     serializer_class = SubscribeRecipeSerializer
     permission_classes = (AllowAny,)
 
@@ -21,6 +22,7 @@ class GetObjectMixin:
 
 class PermissionAndPaginationMixin:
     """Миксин для списка тегов и ингредиентов."""
+
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = None
 
@@ -28,4 +30,5 @@ class PermissionAndPaginationMixin:
 class ListCreateDestroyViewSet(generics.RetrieveDestroyAPIView,
                                generics.ListCreateAPIView):
     """Вьюсет для переиспользования."""
+
     pass
