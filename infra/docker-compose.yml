@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: gwynrey/foodgram_backend:v1
+    image: gwynrey/foodgram_backend:v18
     restart: always
     volumes:
       - data_value:/code/data/
@@ -28,7 +28,7 @@ services:
       - backend
 
   nginx:
-    image: nginx:1.19.3
+    image: nginx:1.21.3-alpine
     ports:
       - 80:80
     volumes:

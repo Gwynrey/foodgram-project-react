@@ -121,7 +121,7 @@ class IngredientSerializer(serializers.ModelSerializer):
         model = Ingredient
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser

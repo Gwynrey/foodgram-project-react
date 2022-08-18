@@ -1,18 +1,14 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from foodgramm.settings import EMPTY_VALUE_DISPLAY
+from users.models import CustomUser
 
 
 @admin.register(CustomUser)
-class CustomUserAdmin(UserAdmin):
-
-    model = CustomUser
+class UserAdmin(admin.ModelAdmin):
     list_display = (
-        'pk',
-        'username',
-        'email'
-    )
-    search_fields = ('username',)
-    list_filter = ('username',)
-    empty_value_display = '-пусто-'
+        'id', 'username', 'email',
+        'first_name', 'last_name', 'date_joined',)
+    search_fields = ('email', 'username', 'first_name', 'last_name')
+    list_filter = ('date_joined', 'email', 'first_name')
+    empty_value_display = EMPTY_VALUE_DISPLAY

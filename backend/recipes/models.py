@@ -1,5 +1,5 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core import validators
 from django.db.models.signals import post_save

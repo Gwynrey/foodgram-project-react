@@ -13,7 +13,9 @@ SECRET_KEY = os.getenv(
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['84.201.155.218', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['51.250.17.153', '127.0.0.1', 'localhost']
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,7 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgramm.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': os.getenv(
@@ -85,7 +86,6 @@ DATABASES = {
             default='5432'),
     }}
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -101,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -111,8 +110,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-AUTH_USER_MODEL = 'users.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

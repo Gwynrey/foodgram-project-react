@@ -1,4 +1,4 @@
-from django.db.models import CharField, EmailField
+from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 
@@ -8,34 +8,24 @@ class UsernameCharacterValidator(UnicodeUsernameValidator):
 
 
 class CustomUser(AbstractUser):
-    username_validator = UsernameCharacterValidator()
-    USER = 'user'
-    MODERATOR = 'moderator'
-    ADMIN = 'admin'
-    ROLE_CHOICES = (
-        (USER, USER),
-        (ADMIN, ADMIN),
-    )
-    username = CharField(
-        max_length=150,
-        unique=True,
-        validators=[username_validator]
-    )
-    first_name = CharField(max_length=150, blank=True)
-    last_name = CharField(max_length=150, blank=True)
-    email = EmailField(max_length=254, unique=True)
-    # role = CharField(
-    #     max_length=max(len(role) for role, _ in ROLE_CHOICES),
-    #     choices=ROLE_CHOICES,
-    #     default=USER,
-    #     verbose_name='Роль'
-    # )
-    # confirmation_code = CharField(max_length=254, default='')
+    email = models.EmailField(
+        'Email',
+        max_length=200,
+        unique=True,)
+    first_name = models.CharField(
+        'Имя',
+        max_length=150)
+    last_name = models.CharField(
+        'Фамилия',
+        max_length=150)
 
-    # @property
-    # def is_user(self):
-    #     return self.role == self.USER
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
-    # @property
-    # def is_admin(self):
-    #     return self.role == self.ADMIN or self.is_superuser or self.is_staff
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+        ordering = ('id',)
+
+    def __str__(self):
+        return self.email
