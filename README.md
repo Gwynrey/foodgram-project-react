@@ -1,11 +1,11 @@
-![foodgram-project-react Workflow ](https://github.com/gwynrey/foodgram-project-react/actions/workflows/workflow.yml/badge.svg?branch=master&event=push)
+[![foodgram-project-react workflow](https://github.com/Gwynrey/foodgram-project-react/actions/workflows/main.yml/badge.svg)](https://github.com/Gwynrey/foodgram-project-react/actions/workflows/main.yml)
 # Проект Foodgram
 Foodgram, «Продуктовый помощник».
 Онлайн-сервис и API для него. На этом сервисе пользователи после регистрации могут публиковать рецепты, подписываться на публикации других пользователей, добавлять понравившиеся рецепты в список «Избранное», а перед походом в магазин скачивать список продуктов, необходимых для приготовления выбранных блюд.
 
 Проект доступен по следующему адресу: <http://51.250.17.153/recipes/>
 
-Админка (login: admin@mail.ru pass: admin) - <http://51.250.17.153/admin/>
+Админка (login: gwynrey@mail.com pass: gwynrey) - <http://51.250.17.153/admin/>
 
 
 ### Технологии

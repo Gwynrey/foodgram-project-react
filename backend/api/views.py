@@ -126,14 +126,15 @@ class UsersViewSet(UserViewSet):
     permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
+        annot = settings.AUTH_USER_MODEL.objects.annotate(
+            is_subscribed=Value(False))
         return settings.AUTH_USER_MODEL.objects.annotate(
             is_subscribed=Exists(
                 self.request.user.follower.filter(
                     author=OuterRef('id'))
             )).prefetch_related(
                 'follower', 'following'
-        ) if self.request.user.is_authenticated else settings.AUTH_USER_MODEL.objects.annotate(
-            is_subscribed=Value(False))
+        ) if self.request.user.is_authenticated else annot
 
     def get_serializer_class(self):
         if self.request.method.lower() == 'post':
