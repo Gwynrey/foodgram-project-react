@@ -61,8 +61,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker pull mir32/foodgram_backend:latest
-            sudo docker pull mir32/foodgram_frontend:latest
+            sudo docker pull gwynrey/foodgram_backend:latest
+            sudo docker pull gwynrey/foodgram_frontend:latest
             cd infra/
             sudo docker-compose stop
             sudo docker-compose rm backend
