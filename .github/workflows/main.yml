@@ -64,7 +64,6 @@ jobs:
             sudo docker pull gwynrey/foodgram_backend:latest
             sudo docker pull gwynrey/foodgram_frontend:latest
             sudo docker-compose stop
-            sudo docker-compose rm backend
       - name: docker-compose up
         uses: appleboy/ssh-action@master
         with:
