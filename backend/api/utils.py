@@ -9,6 +9,7 @@ from reportlab.pdfgen import canvas
 
 FILENAME = 'shoppingcart.pdf'
 
+
 def downloader(shopping_cart):
     """Качаем список с ингредиентами."""
     buffer = io.BytesIO()

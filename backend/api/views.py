@@ -1,5 +1,3 @@
-import io
-
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.db.models.aggregates import Count, Sum
@@ -199,7 +197,6 @@ class RecipesViewSet(viewsets.ModelViewSet):
         permission_classes=(IsAuthenticated,))
     def download_shopping_cart(self, request):
         """Качаем список с ингредиентами."""
-        buffer = io.BytesIO()
         shopping_cart = (
             request.user.shopping_cart.recipe.
             values(
