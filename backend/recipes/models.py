@@ -39,7 +39,7 @@ class Tag(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(
-        verbose_name='Ингридиент',
+        verbose_name='Ингредиент',
         max_length=200
     )
     measurement_unit = models.TextField(
@@ -167,6 +167,15 @@ class FavoriteRecipe(models.Model):
     class Meta:
         verbose_name = 'Избранный рецепт'
         verbose_name_plural = 'Избранные рецепты'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('user', 'recipe',),
+                name='unique_recipe'),
+            models.CheckConstraint(
+                name='user_not_recipe_again',
+                check=~models.Q(author=models.F('recipe')),
+            )
+        ]
 
     def __str__(self):
         list_ = [item['name'] for item in self.recipe.values('name')]
@@ -195,6 +204,15 @@ class ShoppingCart(models.Model):
         verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'
         ordering = ('-id',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=('user', 'recipe',),
+                name='unique_recipe'),
+            models.CheckConstraint(
+                name='user_not_recipe_again',
+                check=~models.Q(author=models.F('recipe')),
+            )
+        ]
 
     def __str__(self):
         list_ = [item['name'] for item in self.recipe.values('name')]

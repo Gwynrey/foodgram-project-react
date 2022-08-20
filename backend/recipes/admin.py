@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from foodgramm.settings import EMPTY_VALUE_DISPLAY
-
 from .models import (FavoriteRecipe, Ingredient, Recipe, RecipeIngredient,
                      ShoppingCart, Subscribe, Tag)
 

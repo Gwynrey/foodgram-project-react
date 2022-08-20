@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: gwynrey/foodgram_backend:v18
+    image: gwynrey/foodgram_backend:v29
     restart: always
     volumes:
       - data_value:/code/data/

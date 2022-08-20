@@ -182,8 +182,12 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
         read_only_fields = ('author',)
 
     def validate(self, data):
+        cooking_time = data['cooking_time']
         ingredients = data['ingredients']
         ingredient_list = []
+        if int(cooking_time) < 1:
+            raise serializers.ValidationError(
+                'Время приготовления должно быть >= 1!')
         if not ingredients:
             raise serializers.ValidationError(
                 'Мин. 1 ингредиент в рецепте!')
@@ -208,18 +212,14 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
                     f'Тэга {tag_name} не существует!')
         return data
 
-    def validate_cooking_time(self, cooking_time):
-        if int(cooking_time) < 1:
-            raise serializers.ValidationError(
-                'Время приготовления должно быть >= 1!')
-        return cooking_time
-
     def create_ingredients(self, ingredients, recipe):
-        for ingredient in ingredients:
-            RecipeIngredient.objects.create(
-                recipe=recipe,
-                ingredient_id=ingredient.get('id'),
-                amount=ingredient.get('amount'), )
+        RecipeIngredient.objects.bulk_create(
+            RecipeIngredient(recipe=recipe,
+            ingredient_id=ingredient.get('id'),
+            amount=ingredient.get('amount'),
+            )
+            for ingredient in ingredients
+        )
 
     def create(self, validated_data):
         ingredients = validated_data.pop('ingredients')
