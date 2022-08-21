@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django.db.models.aggregates import Count, Sum
 from django.db.models.expressions import Exists, OuterRef, Value
@@ -27,6 +28,7 @@ from api.mixins import (GetObjectMixin, ListCreateDestroyViewSet,
 from api.utils import downloader
 
 
+User = get_user_model()
 FILENAME = 'shoppingcart.pdf'
 
 
@@ -47,7 +49,7 @@ class AddAndDeleteSubscribe(
 
     def get_object(self):
         user_id = self.kwargs['user_id']
-        user = get_object_or_404(settings.AUTH_USER_MODEL, id=user_id)
+        user = get_object_or_404(User, id=user_id)
         self.check_object_permissions(self.request, user)
         return user
 
@@ -222,7 +224,6 @@ class IngredientsViewSet(
 
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-    pagination_class = PageNumberPagination
     filterset_class = IngredientFilter
 
 
